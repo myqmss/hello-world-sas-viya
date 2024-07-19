@@ -10,21 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-    - name: List files in workflows directory
-      run: |
-        ls -l .github/workflows/
-    
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        node-version: '20'
+
+    - name: List files in root directory
+      run: |
+        ls -l
+
+    - name: List files in .github directory
+      run: |
+        ls -l .github || echo ".github directory not found"
+
+    - name: List files in .github/workflows directory
+      run: |
+        ls -l .github/workflows || echo ".github/workflows directory not found"
 
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: '3.x'
-        node-version: '20'
 
     - name: Install dependencies
       run: |
@@ -32,7 +36,7 @@ jobs:
 
     - name: Deploy to SAS Viya
       run: |
-        python .github/workflows
+        python .github/workflows/deploy_to_sas.py
       env:
         VIYA_HOST: ${{ secrets.VIYA_HOST }}
         VIYA_USER: ${{ secrets.VIYA_USER }}
