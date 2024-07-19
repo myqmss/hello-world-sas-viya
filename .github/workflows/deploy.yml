@@ -1,0 +1,31 @@
+name: Deploy to SAS Viya
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install saspy requests
+
+    - name: Deploy to SAS Viya
+      run: |
+        python deploy_to_sas.py
+      env:
+        VIYA_HOST: ${{ secrets.VIYA_HOST }}
+        VIYA_USER: ${{ secrets.VIYA_USER }}
+        VIYA_PASSWORD: ${{ secrets.VIYA_PASSWORD }}
