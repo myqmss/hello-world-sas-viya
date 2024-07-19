@@ -13,7 +13,7 @@ jobs:
     
     - name: List files in workflows directory
       run: |
-        ls -l /hello-world-sas-viya/.github/workflows/
+        ls -l .github/workflows/
     
     - name: Checkout code
       uses: actions/checkout@v3
@@ -32,7 +32,7 @@ jobs:
 
     - name: Deploy to SAS Viya
       run: |
-        python /hello-world-sas-viya/.github/workflows/deploy_to_sas.py
+        python .github/workflows
       env:
         VIYA_HOST: ${{ secrets.VIYA_HOST }}
         VIYA_USER: ${{ secrets.VIYA_USER }}
