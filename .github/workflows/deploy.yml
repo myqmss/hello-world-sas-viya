@@ -19,11 +19,11 @@ jobs:
 
     - name: List files in .github directory
       run: |
-        ls -l .github || echo ".github directory not found"
+        ls -l .github || echo ".github directory not found :("
 
     - name: List files in .github/workflows directory
       run: |
-        ls -l .github/workflows || echo ".github/workflows directory not found"
+        ls -l .github/workflows || echo ".github/workflows directory not found :("
 
     - name: Set up Python
       uses: actions/setup-python@v3
